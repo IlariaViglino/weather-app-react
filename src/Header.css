@@ -1,0 +1,67 @@
+#search-input {
+  background-color: rgb(227, 238, 244);
+  border: none;
+  color: rgba(39, 33, 66, 0.4);
+  font-size: 16px;
+  padding: 20px;
+  width: 75%;
+  border-radius: 6px;
+}
+#submit-button {
+  margin-left: 5px;
+  font-size: 16px;
+  background-color: rgb(107, 160, 191);
+  color: white;
+  border: none;
+  padding: 20px;
+  line-height: 1;
+  border-radius: 5px;
+  transition: all 200ms ease-in-out;
+}
+#submit-button:hover {
+  background-color: rgb(65, 127, 163);
+}
+
+.Main {
+  display: flex;
+  justify-content: space-between;
+}
+.current-city {
+  font-size: 38px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+.current-temperature {
+  margin-top: 50px;
+}
+.current-temperature-icon {
+  position: relative;
+  top: 20px;
+  right: 40px;
+  font-size: 40px;
+  margin-right: 10px;
+}
+
+.current-temperature-value {
+  position: relative;
+  top: 5px;
+  right: 30px;
+  font-size: 70px;
+  font-weight: bold;
+}
+
+.current-temperature-unit {
+  font-size: 28px;
+  position: relative;
+  top: -25px;
+  right: 30px;
+}
+
+.current-details {
+  color: #757575;
+  line-height: 1.5;
+}
+
+.current-details strong {
+  color: rgb(246, 82, 130);
+}
