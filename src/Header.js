@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import "./Header.css";
 import axios from "axios";
+import FormatDate from "./FormatDate";
+import WeatherIcon from "./WeatherIcon";
+import CurrentTemp from "./CurrentTemp";
+
+
+
 
 export default function Header(props) {
   const [city, setCity] = useState(null);
@@ -17,11 +23,12 @@ export default function Header(props) {
     setLoaded(true);
 
     setWeather({
+      date: new Date(),
       temp: Math.round(response.data.temperature.current),
       description: response.data.condition.description,
       humidity: response.data.temperature.humidity,
       wind: Math.round(response.data.wind.speed),
-      iconUrl: response.data.condition.icon_url,
+      icon: response.data.condition.icon,
     });
   }
 
@@ -34,6 +41,17 @@ export default function Header(props) {
 
     axios.get(apiUrl).then(updateWeather);
   }
+
+  function capitalizeFirstLetter(string) {
+    //string = string.replaceAll(" ", "");
+    let firstLetter = string.charAt(0);
+    firstLetter = firstLetter.toUpperCase();
+    let remainder = string.slice(1).toLowerCase();
+    return firstLetter + remainder;
+  }
+  
+
+
   if (loaded) {
     return (
       <div className="Header">
@@ -49,11 +67,13 @@ export default function Header(props) {
         </form>
         <div className="Main">
           <div>
-            <h1 class="current-city">{city2}</h1>
+            <h1 class="current-city">{capitalizeFirstLetter(city2)}</h1>
             <div className="CurrentDetails">
               <p class="current-details">
-                <span class="date"></span>,
-                <span class="description">{weather.description}</span>
+                <span class="date">
+                  <FormatDate date={weather.date}/>
+                  </span>,
+                <span class="description"> {weather.description}</span>
                 <br />
                 Humidity: <strong class="humidity">{weather.humidity}</strong>
                 <strong>%</strong>, Wind:{" "}
@@ -65,10 +85,9 @@ export default function Header(props) {
           <div className="CurrentTemp">
             <div class="current-temperature">
               <span class="current-temperature-icon">
-                <img src={weather.iconUrl} width="80" />
+<WeatherIcon code={weather.icon} />
               </span>
-              <span class="current-temperature-value">{weather.temp}</span>
-              <span class="current-temperature-unit">°C</span>
+              <CurrentTemp valueCelsius={weather.temp}/>
             </div>
           </div>
         </div>
@@ -98,8 +117,8 @@ export default function Header(props) {
                 <span class="date"></span>,
                 <span class="description">{weather.description}</span>
                 <br />
-                Humidity: <strong class="humidity">87</strong>
-                <strong>%</strong>, Wind: <strong class="wind">7.2</strong>
+                Humidity: <strong class="humidity">{weather.humidity}</strong>
+                <strong>%</strong>, Wind: <strong class="wind">{weather.wind}</strong>
                 <strong>km/h</strong>
               </p>
             </div>
@@ -107,13 +126,9 @@ export default function Header(props) {
           <div className="CurrentTemp">
             <div class="current-temperature">
               <span class="current-temperature-icon">
-                <img
-                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
-                  width="80"
-                />
+              <WeatherIcon code={weather.icon} />
               </span>
-              <span class="current-temperature-value">{weather.temp}</span>
-              <span class="current-temperature-unit">°C</span>
+              <CurrentTemp valueCelsius={weather.temp}/>
             </div>
           </div>
         </div>

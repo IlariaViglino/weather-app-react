@@ -1,4 +1,5 @@
 import React from "react";
+import "./CurrentTemp.css";
 
 export default function CurrentDetails() {
   return (
