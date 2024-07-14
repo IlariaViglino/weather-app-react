@@ -20,8 +20,7 @@ export default function Header(props) {
     setCity(event.target.value);
   }
   function updateWeather(response) {
-    setLoaded(true);
-
+setLoaded(true);
     setWeather({
       date: new Date(),
       temp: Math.round(response.data.temperature.current),

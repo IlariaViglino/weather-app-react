@@ -7,10 +7,7 @@ import background from "./background.jpg";
 
 export default function App() {
   return (
-    <div className="App" style={{backgroundImage:`url(${background})`,
-    backgroundRepeat:"no-repeat",
-    backgroundSize:"cover",
-    width: "100%"}}>
+    <div className="App">
       <body >
         <div class="container">
           <Header cityName="Lausanne"/>

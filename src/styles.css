@@ -9,8 +9,10 @@
 
   box-shadow: rgba(19, 20, 45, 0.08) 0px 8px 8px 0;
 }
-body { 
-  
+body {
+  background-image: url("./back.jpeg");
+  background-repeat: "no-repeat";
+  background-size: "cover";
 
   font-family: "Space Grotesk", sans-serif;
 }
