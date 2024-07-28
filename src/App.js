@@ -7,14 +7,15 @@ import background from "./background.jpg";
 
 export default function App() {
   return (
-    <div className="App">
-      <body >
+    <body className="App">
+    <div >
+     
         <div class="container">
           <Header cityName="Lausanne"/>
-          <Forecast />
           <Footer />
         </div>
-      </body>
+      
     </div>
+    </body>
   );
 }

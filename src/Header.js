@@ -4,6 +4,7 @@ import axios from "axios";
 import FormatDate from "./FormatDate";
 import WeatherIcon from "./WeatherIcon";
 import CurrentTemp from "./CurrentTemp";
+import Forecast from "./Forecast";
 
 
 
@@ -28,6 +29,7 @@ setLoaded(true);
       humidity: response.data.temperature.humidity,
       wind: Math.round(response.data.wind.speed),
       icon: response.data.condition.icon,
+      
     });
   }
 
@@ -54,7 +56,7 @@ setLoaded(true);
   if (loaded) {
     return (
       <div className="Header">
-        <form onSubmit={handleSubmit} class="enter-city-form">
+        <form onSubmit={handleSubmit} className="enter-city-form">
           <input
             onChange={updateCity}
             type="search"
@@ -66,30 +68,34 @@ setLoaded(true);
         </form>
         <div className="Main">
           <div>
-            <h1 class="current-city">{capitalizeFirstLetter(city2)}</h1>
+            <h1 className="current-city">{capitalizeFirstLetter(city2)}</h1>
             <div className="CurrentDetails">
-              <p class="current-details">
-                <span class="date">
+              <p className="current-details">
+                <span className="date">
                   <FormatDate date={weather.date}/>
                   </span>,
-                <span class="description"> {weather.description}</span>
+                <span className="description"> {weather.description}</span>
                 <br />
-                Humidity: <strong class="humidity">{weather.humidity}</strong>
+                Humidity: <strong className="humidity">{weather.humidity}</strong>
                 <strong>%</strong>, Wind:{" "}
-                <strong class="wind">{weather.wind}</strong>
+                <strong className="wind">{weather.wind}</strong>
                 <strong>km/h</strong>
               </p>
             </div>
           </div>
           <div className="CurrentTemp">
-            <div class="current-temperature">
-              <span class="current-temperature-icon">
-<WeatherIcon code={weather.icon} />
+            <div className="current-temperature">
+              <span className="current-temperature-icon">
+<WeatherIcon code={weather.icon} size={65}/>
               </span>
               <CurrentTemp valueCelsius={weather.temp}/>
             </div>
           </div>
         </div>
+
+        <Forecast city={city2} date={weather.date}/>
+
+
       </div>
     );
   } else {
@@ -98,7 +104,7 @@ setLoaded(true);
     axios.get(apiUrlDefaultCity).then(updateWeather);
     return (
       <div className="Header">
-        <form onSubmit={handleSubmit} class="enter-city-form">
+        <form onSubmit={handleSubmit} className="enter-city-form">
           <input
             onChange={updateCity}
             type="search"
@@ -110,27 +116,28 @@ setLoaded(true);
         </form>
         <div className="Main">
           <div>
-            <h1 class="current-city">{props.cityName}</h1>
+            <h1 className="current-city">{props.cityName}</h1>
             <div className="CurrentDetails">
-              <p class="current-details">
-                <span class="date"></span>,
-                <span class="description">{weather.description}</span>
+              <p className="current-details">
+                <span className="date"></span>,
+                <span className="description">{weather.description}</span>
                 <br />
-                Humidity: <strong class="humidity">{weather.humidity}</strong>
-                <strong>%</strong>, Wind: <strong class="wind">{weather.wind}</strong>
+                Humidity: <strong className="humidity">{weather.humidity}</strong>
+                <strong>%</strong>, Wind: <strong className="wind">{weather.wind}</strong>
                 <strong>km/h</strong>
               </p>
             </div>
           </div>
           <div className="CurrentTemp">
-            <div class="current-temperature">
-              <span class="current-temperature-icon">
+            <div className="current-temperature">
+              <span className="current-temperature-icon">
               <WeatherIcon code={weather.icon} />
               </span>
               <CurrentTemp valueCelsius={weather.temp}/>
             </div>
           </div>
         </div>
+        <Forecast city={"lausanne"} date={weather.date}/>
       </div>
     );
   }

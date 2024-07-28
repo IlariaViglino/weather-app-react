@@ -6,7 +6,7 @@ export default function Main() {
   return (
     <div className="Main">
       <div>
-        <h1 class="current-city"></h1>
+        <h1 className="current-city"></h1>
         <CurrentDetails />
       </div>
       <CurrentTemp />
