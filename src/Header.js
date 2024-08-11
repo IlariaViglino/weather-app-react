@@ -93,7 +93,7 @@ setLoaded(true);
           </div>
         </div>
 
-        <Forecast city={city2} date={weather.date}/>
+        <Forecast city={city2} />
 
 
       </div>
@@ -137,7 +137,7 @@ setLoaded(true);
             </div>
           </div>
         </div>
-        <Forecast city={"lausanne"} date={weather.date}/>
+        <Forecast city={"lausanne"} />
       </div>
     );
   }
